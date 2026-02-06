@@ -1,11 +1,9 @@
 local addonName = ...
 
--- Configurable values kept together for easy tweaks
 local DEFAULT_POSITION = { anchor = "BOTTOMRIGHT", x = -120, y = 120 }
 local FADE_IN_DURATION = 0.25
 local FADE_OUT_DURATION = 0.35
 local MIN_REPEAT_SECONDS = 3 -- throttle to avoid spamming the same event
--- DISPLAY_TIME_MIN/MAX replaced by settings
 
 local messages = {
     PLAYER_DEAD = {
@@ -85,7 +83,6 @@ text:SetShadowColor(0, 0, 0, 0.9)
 text:SetTextColor(1, 1, 1, 1)
 text:SetText("Mr. Mythical says hi!")
 
--- Dev buttons frame (separate from display)
 local hideTimer
 local lastEventShown = {}
 local moveMode = false
