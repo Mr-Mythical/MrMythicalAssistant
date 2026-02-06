@@ -5,8 +5,8 @@
 ## Author: Braunerr
 ## IconTexture: Interface\AddOns\MrMythical\Logo.tga
 ## SavedVariables: MrMythicalAssistantDB
-## X-Curse-Project-ID:
-## X-Wago-ID: 
+## X-Curse-Project-ID: 1455286
+## X-Wago-ID: rNky0jKa
 
 Options.lua
 MrMythicalAssistant.lua

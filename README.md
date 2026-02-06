@@ -8,6 +8,12 @@ Meet Mr. Mythical: a distinguished unicorn sporting a magnificent moustache and 
 
 > **Note:** Despite his condescending demeanor, Mr. Mythical is slowly learning to be more helpful. Additional automation features and actually useful tools are in development—though he'll never admit he's trying to be helpful.
 
+---
+
+**❤️ Support development on [Patreon](https://www.patreon.com/c/mrmythical)** - Help keep Mr. Mythical and all our addons updated and feature-rich!
+
+---
+
 ## Key Features
 
 ### **Sophisticated (But Unhelpful) Commentary**
@@ -19,7 +25,7 @@ Mr. Mythical provides his distinguished observations on your performance:
 
 ### **Occasionally Helpful Automation**
 When Mr. Mythical deigns to assist:
-- **Auto-Insert Keystones**: He'll graciously insert the correct keystone when you open the receptacle (if he's in the mood)—though you can disable this if you don't trust his sophisticated judgment
+- **Auto-Insert Keystones**: He'll graciously insert the correct keystone (if he's in the mood)—though you can disable this if you don't trust his sophisticated judgment
 
 ### **Customization Options**
 Tailor the experience to your preferences:
@@ -65,8 +71,6 @@ Looking for more Mythic+ tools? Check out our companion addons:
 ## More Tools & Resources
 
 Visit **[MrMythical.com](https://mrmythical.com)** for additional Mythic+ & Raid tools.
-
-Support development on **[Patreon](https://www.patreon.com/c/mrmythical)** 
 
 ### **Want to report a bug or suggest a feature?**
 Visit our [GitHub Issues](https://github.com/Mr-Mythical/MrMythicalAssistant/issues) page for bug reports and feature requests.
