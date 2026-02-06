@@ -12,7 +12,6 @@ _G.MrMythicalAssistant = MrMythicalAssistant
 local Options = {}
 MrMythicalAssistant.Options = Options
 
--- Configuration data (mirrors the values in the main lua, but integrated into DB)
 local DEFAULTS = {
     POSITION = { anchor = "BOTTOMRIGHT", x = -120, y = 120 },
     ENABLE_CHAT_MESSAGES = true,
@@ -23,7 +22,6 @@ local DEFAULTS = {
     MESSAGE_DURATION = 5 -- Default 5 seconds
 }
 
--- TOOLTIPS for settings
 local TOOLTIPS = {
     ENABLE_KEY_AUTO_INSERT = "Allow Mr. Mythical to automatically attempt to insert your keystone when you open the receptacle.",
     MESSAGE_DURATION = "How long the message stays on screen."
@@ -54,7 +52,7 @@ local function createSetting(category, name, key, settingType, tooltip, options)
     if settingType == "boolean" then
         initializer = Settings.CreateCheckbox(category, setting, tooltip)
     else 
-        -- Dropdown logic similar to other addons, if needed later
+        -- Dropdown logic if needed later
         local function getOptions()
             local dropdownOptions = {}
             local menuRadio = (_G.MenuButtonType and _G.MenuButtonType.Radio)
