@@ -1,10 +1,18 @@
 local addonName = ...
+---@class MrMythicalAssistant
+local MrMythicalAssistant = _G[addonName] or {}
 
+--- Default position configuration for the display frame
 local DEFAULT_POSITION = { anchor = "BOTTOMRIGHT", x = -120, y = 120 }
+--- Duration for the fade-in animation
 local FADE_IN_DURATION = 0.25
+--- Duration for the fade-out animation
 local FADE_OUT_DURATION = 0.35
+--- Minimum seconds between showing messages for the same event
 local MIN_REPEAT_SECONDS = 3 -- throttle to avoid spamming the same event
 
+--- Table containing all available messages for different events
+---@type table<string, string[]>
 local messages = {
     PLAYER_DEAD = {
         "Ah. Yes. That mechanic.",
@@ -60,6 +68,7 @@ local messages = {
 }
 
 -- Display frame for avatar and text
+---@type Frame
 local frame = CreateFrame("Frame", addonName .. "Frame", UIParent, BackdropTemplateMixin and "BackdropTemplate")
 frame:SetSize(260, 170)
 frame:SetPoint(DEFAULT_POSITION.anchor, UIParent, DEFAULT_POSITION.anchor, DEFAULT_POSITION.x, DEFAULT_POSITION.y)
@@ -68,12 +77,14 @@ frame:SetFrameStrata("DIALOG")
 frame:SetAlpha(0)
 frame:Hide()
 
+---@type Texture
 local avatar = frame:CreateTexture(nil, "ARTWORK")
 avatar:SetSize(96, 96)
 avatar:SetPoint("TOPLEFT", frame, "TOPLEFT", 12, -12)
 avatar:SetTexture("Interface/AddOns/MrMythicalAssistant/Logo.png")
 avatar:SetTexCoord(0, 1, 0, 1)
 
+---@type FontString
 local text = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 text:SetPoint("TOP", avatar, "BOTTOM", 0, -10)
 text:SetJustifyH("CENTER")
@@ -84,15 +95,18 @@ text:SetTextColor(1, 1, 1, 1)
 text:SetText("Mr. Mythical says hi!")
 
 local hideTimer
+---@type table<string, number>
 local lastEventShown = {}
 local moveMode = false
 
+---Saves the current frame position to the database
 local function savePosition()
     local point, _, _, x, y = frame:GetPoint()
     MrMythicalAssistantDB = MrMythicalAssistantDB or {}
     MrMythicalAssistantDB.position = { point = point, x = x, y = y }
 end
 
+---Restores the frame position from the database
 local function applyPosition()
     local pos = MrMythicalAssistantDB and MrMythicalAssistantDB.position
     frame:ClearAllPoints()
@@ -103,6 +117,9 @@ local function applyPosition()
     end
 end
 
+---Selects a random message for a given event
+---@param event string The event key to look up in the messages table
+---@return string|nil message The selected message string or nil if not found
 local function pickMessage(event)
     local list = messages[event]
     if not list or #list == 0 then
@@ -112,6 +129,7 @@ local function pickMessage(event)
     return list[index]
 end
 
+---Cancels the current active hide timer and animation
 local function cancelHideTimer()
     if hideTimer then
         hideTimer:Cancel()
@@ -122,6 +140,7 @@ local function cancelHideTimer()
     end
 end
 
+---Fades out the frame
 local function fadeOut()
     if UIFrameFadeOut then
         UIFrameFadeOut(frame, FADE_OUT_DURATION, frame:GetAlpha(), 0)
@@ -134,6 +153,10 @@ local function fadeOut()
     end
 end
 
+---Displays a message for a specific event
+---@param event string The event identifier
+---@param force boolean? Whether to force show the message ignoring delay throttle
+---@param ... any Optional arguments for string formatting in the message
 local function showMessage(event, force, ...)
     if not MrMythicalAssistantDB.ENABLE_CHAT_MESSAGES and (event ~= "TEST_BUTTON" and force ~= true) then return end
     
@@ -171,6 +194,8 @@ local function showMessage(event, force, ...)
     hideTimer = C_Timer.NewTimer(displayTime, fadeOut)
 end
 
+---Toggles the movement mode for the frame
+---@param enable boolean Whether to enable or disable move mode
 local function setMoveMode(enable)
     moveMode = enable
     cancelHideTimer()
@@ -204,6 +229,8 @@ MrMythicalAssistant.SetMoveMode = setMoveMode
 MrMythicalAssistant.ShowMessage = showMessage
 
 SLASH_MRMYTHICALASSISTANT1 = "/mma"
+---Handle slash commands
+---@param msg string The message passed to the slash command
 SlashCmdList["MRMYTHICALASSISTANT"] = function(msg)
     msg = msg:lower():trim()
     if msg == "test" then
@@ -236,6 +263,7 @@ frame:RegisterEvent("PLAYER_MONEY")
 local lastRepairCost = 0
 local playerMoney = 0
 
+---Main event handler script
 frame:SetScript("OnEvent", function(_, event, ...)
     if event == "ADDON_LOADED" then
         local name = ...
@@ -337,7 +365,8 @@ frame:SetScript("OnEvent", function(_, event, ...)
     end
 end)
 
--- Hook repair function to catch when user repairs
+---Hook repair function to catch when user repairs
+---@param useGuild boolean Whether the repair is paid by the guild
 hooksecurefunc("RepairAllItems", function(useGuild)
     if not MrMythicalAssistantDB.ENABLE_REPAIR_TRACKING then return end
 
