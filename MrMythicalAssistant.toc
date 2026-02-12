@@ -1,4 +1,4 @@
-## Interface: 120000
+## Interface: 120000, 120001
 ## Title: Mr. Mythical: Assistant
 ## Notes: A sophisticated unicorn companion who provides witty (if not particularly helpful) commentary on your adventures.
 ## Version: @project-version@
