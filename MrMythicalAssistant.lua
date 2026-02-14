@@ -117,6 +117,13 @@ local function applyPosition()
     end
 end
 
+---Resets the frame position to the screen center (0, 0)
+local function resetPosition()
+    MrMythicalAssistantDB = MrMythicalAssistantDB or {}
+    MrMythicalAssistantDB.position = { point = "CENTER", x = 0, y = 0 }
+    applyPosition()
+end
+
 ---Selects a random message for a given event
 ---@param event string The event key to look up in the messages table
 ---@return string|nil message The selected message string or nil if not found
@@ -235,6 +242,9 @@ SlashCmdList["MRMYTHICALASSISTANT"] = function(msg)
     msg = msg:lower():trim()
     if msg == "test" then
         showMessage("TEST_BUTTON", true)
+    elseif msg == "reset" or msg == "resetpos" then
+        resetPosition()
+        print("|cff00ff00MrMythicalAssistant:|r Position reset to 0, 0.")
     elseif msg == "move" or msg == "unlock" or msg == "lock" then
         if moveMode then
             setMoveMode(false)
@@ -246,6 +256,7 @@ SlashCmdList["MRMYTHICALASSISTANT"] = function(msg)
     else
         print("|cff00ff00MrMythicalAssistant Commands:|r")
         print("  /mma test   - Show a test message")
+        print("  /mma reset  - Reset position to 0, 0")
         print("  /mma move   - Unlock/Lock the frame position")
     end
 end

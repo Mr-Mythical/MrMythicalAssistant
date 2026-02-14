@@ -37,6 +37,8 @@ Tailor the experience to your preferences:
 ### **Commands**
 - `/mma test` - Show a test message
 - `/mma move` - Unlock/Lock the frame position for dragging
+- `/mma reset` - Reset position to center
+
 
 ## Download
 
