@@ -9,4 +9,4 @@
 ## X-Wago-ID: rNky0jKa
 
 Options.lua
-MrMythicalAssistant.lua
+Core.lua
