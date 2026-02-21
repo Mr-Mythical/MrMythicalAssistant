@@ -21,7 +21,10 @@ local messages = {
         "Shall we pretend that pull didn’t happen?",
         "Gravity is a harsh mistress, isn't it?",
         "A tactical reset, I presume?",
-        "Brilliant performance. Truly."
+        "Brilliant performance. Truly.",
+        "Obviously that was the healers fault, right?",
+        "I see you enjoy the floor.",
+        "The ground is a great place to lie down and think about your choices."
     },
     CHALLENGE_MODE_START = {
         "Another dungeon? Do try to be entertaining.",
@@ -39,7 +42,9 @@ local messages = {
     KEY_INSERTED = {
         "The key is set. Do try not to break it.",
         "Are you sure you're ready for this?",
-        "A bold choice."
+        "A bold choice.",
+        "The key is in. No pressure.",
+        "Keystone slotted. Let's see if you can handle it."
     },
     TEST_BUTTON = {
         "Do not poke the unicorn.",
@@ -51,19 +56,25 @@ local messages = {
         "It is done. Adequately.",
         "Not terrible. I've seen worse.",
         "Timed? Barely.",
-        "Next time, try to be faster."
+        "Next time, try to be faster.",
+        "Well, you made it. That's something.",
+        "Congratulations on your victory. Try not to let it go to your head."
     },
     REPAIR_BILL_SELF = {
         "Repaired for %s. Expensive hobby, isn't it?",
         "Swirlies are not for standing in. That will be %s.",
         "Your armor is made of paper. %s deducted.",
-        "%s? I suppose durability is optional for you."
+        "%s? I suppose durability is optional for you.",
+        "You paid %s to fix your mistakes. How very responsible of you.",
+        "The repair bill is %s. I hope it was worth it."
     },
     REPAIR_BILL_GUILD = {
         "%s repair bill? Your guild master must hate you.",
         "Draining the guild bank of %s. How very altruistic.",
         "The guild pays %s for your incompetence. Charming.",
-        "%s from the guild funds. Do you enjoy being a liability?"
+        "%s from the guild funds. Do you enjoy being a liability?",
+        "Your guild paid %s to fix your mistakes. How very generous of them.",
+        "The repair bill is %s. I hope it was worth it for your guildmates",
     }
 }
 
