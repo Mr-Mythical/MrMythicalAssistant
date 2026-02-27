@@ -33,6 +33,22 @@ local messages = {
         "Do try to keep up, darling.",
         "Oh good, cardio."
     },
+    CHALLENGE_MODE_START_REPEAT = {
+        "%s again. Your commitment to this hallway simulator is noted.",
+        "Back into %s for attempt #%s. Ambition or amnesia?",
+        "%s, round #%s. I do admire a stubborn adventurer.",
+        "Another tour of %s. I'll pretend run #%s is the lucky one.",
+        "%s again? Splendid. My monocle fogs at this level of dedication.",
+        "Run #%s in %s. At this point you should charge the dungeon rent."
+    },
+    CHALLENGE_MODE_START_SWITCH_AFTER_REPEAT = {
+        "Retiring %s after %s repeats, are we? Very well—%s awaits.",
+        "You exhausted %s for %s repeats. Time to offend a fresh dungeon: %s.",
+        "From %s (%s repeats) to %s. A dramatic pivot, finally.",
+        "Farewell, %s. After %s repeats, we now inconvenience %s.",
+        "%s survived your %s-repeat era. Let's see what %s does with you.",
+        "New chapter: leaving %s after %s repeats and marching into %s."
+    },
     CHALLENGE_MODE_KEYSTONE_RECEPTABLE_OPEN = {
         "Window shopping? You don't have this key.",
         "You opened the slot. Marvelous. Now where is the key?",
@@ -109,6 +125,8 @@ local hideTimer
 ---@type table<string, number>
 local lastEventShown = {}
 local moveMode = false
+local lastStartedDungeon
+local repeatCount = 0
 
 ---Saves the current frame position to the database
 local function savePosition()
@@ -341,7 +359,19 @@ frame:SetScript("OnEvent", function(_, event, ...)
         local mapID = C_ChallengeMode.GetActiveChallengeMapID()
         local level = C_ChallengeMode.GetActiveKeystoneInfo()
         local mapName = mapID and C_ChallengeMode.GetMapUIInfo(mapID) or "Unknown Dungeon"
-        showMessage(event, false, level or "?", mapName)
+
+        if lastStartedDungeon and mapName == lastStartedDungeon then
+            repeatCount = repeatCount + 1
+            showMessage("CHALLENGE_MODE_START_REPEAT", false, mapName, tostring(repeatCount + 1))
+        else
+            if lastStartedDungeon and repeatCount > 0 then
+                showMessage("CHALLENGE_MODE_START_SWITCH_AFTER_REPEAT", false, lastStartedDungeon, tostring(repeatCount), mapName)
+            else
+                showMessage(event, false, level or "?", mapName)
+            end
+            lastStartedDungeon = mapName
+            repeatCount = 0
+        end
 
     elseif event == "CHALLENGE_MODE_KEYSTONE_RECEPTABLE_OPEN" then
         -- Auto insert keystone logic
