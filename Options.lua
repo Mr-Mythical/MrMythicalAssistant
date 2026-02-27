@@ -15,7 +15,6 @@ MrMythicalAssistant.Options = Options
 local DEFAULTS = {
     POSITION = { anchor = "BOTTOMRIGHT", x = -120, y = 120 },
     ENABLE_CHAT_MESSAGES = true,
-    ENABLE_SOUND_EFFECTS = true, -- Future proofing
     ENABLE_REPAIR_TRACKING = true,
     ENABLE_KEY_AUTO_INSERT = true,
     VERBOSE_MODE = false,

@@ -377,13 +377,7 @@ frame:SetScript("OnEvent", function(_, event, ...)
         showMessage("KEY_INSERTED", true)
         
     elseif event == "CHALLENGE_MODE_COMPLETED" then
-        local info = C_ChallengeMode.GetChallengeCompletionInfo()
-        
-        if info and info.onTime then
-             showMessage(event, true)
-        else
-             showMessage(event, true) 
-        end
+        showMessage(event, true)
     end
 end)
 
@@ -402,7 +396,3 @@ hooksecurefunc("RepairAllItems", function(useGuild)
         lastRepairCost = 0 -- Reset so we don't show it again via auto-detect
     end
 end)
-
-frame:RegisterEvent("ADDON_LOADED")
-frame:RegisterEvent("PLAYER_DEAD")
-frame:RegisterEvent("CHALLENGE_MODE_START")
