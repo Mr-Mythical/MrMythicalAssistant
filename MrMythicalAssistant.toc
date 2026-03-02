@@ -9,4 +9,5 @@
 ## X-Wago-ID: rNky0jKa
 
 Options.lua
+Messages.lua
 Core.lua
