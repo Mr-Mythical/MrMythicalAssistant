@@ -83,5 +83,17 @@ MrMythicalAssistant.messages = {
         "%s from the guild funds. Do you enjoy being a liability?",
         "Your guild paid %s to fix your mistakes. How very generous of them.",
         "The repair bill is %s. I hope it was worth it for your guildmates",
+    },
+    PLAYER_LEVEL_UP = {
+        "Level %s. How thrilling. Do try not to die immediately.",
+        "Congratulations on level %s. I expect you'll still stand in fire.",
+        "Level %s achieved. Your mediocrity evolves.",
+        "You've reached level %s. Marginally less hopeless.",
+        "Level %s. One step closer to disappointing people at max level.",
+        "Ding! Level %s. Don't let it go to your head.",
+        "Level %s obtained. Perhaps now you'll learn to interrupt.",
+        "Welcome to level %s. Your competence remains... theoretical.",
+        "Level %s. Try not to waste this moment of growth.",
+        "Ah, level %s. A fresh opportunity for poor decision-making."
     }
 }

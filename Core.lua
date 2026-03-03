@@ -216,6 +216,7 @@ frame:RegisterEvent("CHALLENGE_MODE_COMPLETED")
 frame:RegisterEvent("MERCHANT_SHOW")
 frame:RegisterEvent("MERCHANT_CLOSED")
 frame:RegisterEvent("PLAYER_MONEY")
+frame:RegisterEvent("PLAYER_LEVEL_UP")
 
 local lastRepairCost = 0
 local playerMoney = 0
@@ -325,6 +326,10 @@ frame:SetScript("OnEvent", function(_, event, ...)
         
     elseif event == "CHALLENGE_MODE_COMPLETED" then
         showMessage(event, true)
+    
+    elseif event == "PLAYER_LEVEL_UP" then
+        local newLevel = ...
+        showMessage(event, false, newLevel)
     end
 end)
 
