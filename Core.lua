@@ -328,8 +328,8 @@ frame:SetScript("OnEvent", function(_, event, ...)
         showMessage(event, true)
     
     elseif event == "PLAYER_LEVEL_UP" then
-        local newLevel = ...
-        showMessage(event, false, newLevel)
+        local level = UnitLevel("player") + 1
+        showMessage("PLAYER_LEVEL_UP", false, level)
     end
 end)
 
