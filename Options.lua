@@ -18,7 +18,7 @@ local DEFAULTS = {
     ENABLE_REPAIR_TRACKING = true,
     ENABLE_KEY_AUTO_INSERT = true,
     VERBOSE_MODE = false,
-    MESSAGE_DURATION = 5 -- Default 5 seconds
+    MESSAGE_DURATION = 5
 }
 
 local TOOLTIPS = {
@@ -76,7 +76,6 @@ local function createSetting(category, name, key, settingType, tooltip, options)
     return { setting = setting, initializer = initializer }
 end
 
---- Initializes saved variables
 function Options.initializeSettings()
     MrMythicalAssistantDB = MrMythicalAssistantDB or {}
     
@@ -87,7 +86,6 @@ function Options.initializeSettings()
         end
     end
     
-    -- Create panel
     local success = pcall(Options.createSettingsPanel)
     if not success then
         C_Timer.After(0.1, function()
@@ -96,7 +94,6 @@ function Options.initializeSettings()
     end
 end
 
---- Creates the settings structure
 function Options.createSettingsPanel()
     -- Use global registry to share parent category
     if not _G.MrMythicalSettingsRegistry then
