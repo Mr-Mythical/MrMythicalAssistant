@@ -182,7 +182,7 @@ MrMythicalAssistant.SetMoveMode = setMoveMode
 MrMythicalAssistant.ShowMessage = showMessage
 
 SLASH_MRMYTHICALASSISTANT1 = "/mma"
----Handle slash commands
+---Handles slash commands
 ---@param msg string The message passed to the slash command
 SlashCmdList["MRMYTHICALASSISTANT"] = function(msg)
     msg = msg:lower():trim()
@@ -202,7 +202,7 @@ SlashCmdList["MRMYTHICALASSISTANT"] = function(msg)
     else
         print("|cff00ff00MrMythicalAssistant Commands:|r")
         print("  /mma test   - Show a test message")
-        print("  /mma reset  - Reset position to 0, 0")
+        print("  /mma reset  - Reset position to screen center")
         print("  /mma move   - Unlock/Lock the frame position")
     end
 end
@@ -328,7 +328,7 @@ frame:SetScript("OnEvent", function(_, event, ...)
         showMessage(event, true)
     
     elseif event == "PLAYER_LEVEL_UP" then
-        local level = UnitLevel("player") + 1
+        local level = UnitLevel("player")
         showMessage("PLAYER_LEVEL_UP", false, level)
     end
 end)

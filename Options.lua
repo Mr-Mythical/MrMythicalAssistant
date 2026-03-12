@@ -50,8 +50,8 @@ local function createSetting(category, name, key, settingType, tooltip, options)
     local initializer
     if settingType == "boolean" then
         initializer = Settings.CreateCheckbox(category, setting, tooltip)
-    else 
-        -- Dropdown logic if needed later
+    else
+        -- Handle dropdown/other options
         local function getOptions()
             local dropdownOptions = {}
             local menuRadio = (_G.MenuButtonType and _G.MenuButtonType.Radio)

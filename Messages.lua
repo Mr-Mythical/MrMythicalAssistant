@@ -82,7 +82,7 @@ MrMythicalAssistant.messages = {
         "The guild pays %s for your incompetence. Charming.",
         "%s from the guild funds. Do you enjoy being a liability?",
         "Your guild paid %s to fix your mistakes. How very generous of them.",
-        "The repair bill is %s. I hope it was worth it for your guildmates",
+        "The repair bill is %s. I hope it was worth it for your guildmates.",
     },
     PLAYER_LEVEL_UP = {
         "Level %s. How thrilling. Do try not to die immediately.",

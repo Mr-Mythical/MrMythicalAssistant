@@ -37,7 +37,7 @@ Tailor the experience to your preferences:
 ### **Commands**
 - `/mma test` - Show a test message
 - `/mma move` - Unlock/Lock the frame position for dragging
-- `/mma reset` - Reset position to center
+- `/mma reset` - Reset position to screen center
 
 
 ## Download
@@ -86,4 +86,3 @@ Visit our [GitHub Issues](https://github.com/Mr-Mythical/MrMythicalAssistant/iss
 **Mr. Mythical: Assistant - A sophisticated unicorn companion who is decidedly not here to hold your hand.**
 
 *Part of the Mr. Mythical addon ecosystem.*
-# MrMythicalAssistant
