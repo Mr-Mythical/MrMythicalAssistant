@@ -4,9 +4,7 @@
 
 ## What Does This Addon Do?
 
-Meet Mr. Mythical: a distinguished unicorn sporting a magnificent moustache and monocle who has decided to grace your adventures with his presence. While he offers some automation features between bouts of sardonic commentary, don't expect him to be overly helpful—he's far too sophisticated for that. The addon displays his witty (and often unhelpful) observations during key moments and can automatically handle keystone insertion when he's feeling generous.
-
-> **Note:** Despite his condescending demeanor, Mr. Mythical is slowly learning to be more helpful. Additional automation features and actually useful tools are in development—though he'll never admit he's trying to be helpful.
+Meet Mr. Mythical: a distinguished unicorn sporting a magnificent moustache and monocle who has decided to grace your adventures with his presence. While he offers some automation features between bouts of sardonic commentary, don't expect him to be overly helpful as he's far too sophisticated for that. The addon displays his witty (and often unhelpful) observations during key moments and can automatically handle keystone insertion when he's feeling generous.
 
 ---
 
