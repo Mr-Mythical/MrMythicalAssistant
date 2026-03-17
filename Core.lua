@@ -2,16 +2,11 @@ local addonName = ...
 ---@class MrMythicalAssistant
 local MrMythicalAssistant = _G[addonName] or {}
 
---- Default position configuration for the display frame
 local DEFAULT_POSITION = { anchor = "BOTTOMRIGHT", x = -120, y = 120 }
---- Duration for the fade-in animation
 local FADE_IN_DURATION = 0.25
---- Duration for the fade-out animation
 local FADE_OUT_DURATION = 0.35
---- Minimum seconds between showing messages for the same event
-local MIN_REPEAT_SECONDS = 3 -- throttle to avoid spamming the same event
+local MIN_REPEAT_SECONDS = 3
 
--- Display frame for avatar and text
 ---@type Frame
 local frame = CreateFrame("Frame", addonName .. "Frame", UIParent, BackdropTemplateMixin and "BackdropTemplate")
 frame:SetSize(260, 170)
@@ -45,7 +40,6 @@ local moveMode = false
 local lastStartedDungeon
 local repeatCount = 0
 
----Saves the current frame position to the database
 local function savePosition()
     local point, _, _, x, y = frame:GetPoint()
     MrMythicalAssistantDB = MrMythicalAssistantDB or {}
@@ -63,7 +57,6 @@ local function applyPosition()
     end
 end
 
----Resets the frame position to the screen center (0, 0)
 local function resetPosition()
     MrMythicalAssistantDB = MrMythicalAssistantDB or {}
     MrMythicalAssistantDB.position = { point = "CENTER", x = 0, y = 0 }
@@ -82,7 +75,6 @@ local function pickMessage(event)
     return list[index]
 end
 
----Cancels the current active hide timer and animation
 local function cancelHideTimer()
     if hideTimer then
         hideTimer:Cancel()
@@ -93,7 +85,6 @@ local function cancelHideTimer()
     end
 end
 
----Fades out the frame
 local function fadeOut()
     if UIFrameFadeOut then
         UIFrameFadeOut(frame, FADE_OUT_DURATION, frame:GetAlpha(), 0)
@@ -221,12 +212,10 @@ frame:RegisterEvent("PLAYER_LEVEL_UP")
 local lastRepairCost = 0
 local playerMoney = 0
 
----Main event handler script
 frame:SetScript("OnEvent", function(_, event, ...)
     if event == "ADDON_LOADED" then
         local name = ...
         if name == addonName then
-            -- Initialize Options first which handles DB defaults
             if MrMythicalAssistant.Options and MrMythicalAssistant.Options.initializeSettings then
                 MrMythicalAssistant.Options.initializeSettings()
             end
@@ -292,7 +281,6 @@ frame:SetScript("OnEvent", function(_, event, ...)
         end
 
     elseif event == "CHALLENGE_MODE_KEYSTONE_RECEPTABLE_OPEN" then
-        -- Auto insert keystone logic
         if MrMythicalAssistantDB.ENABLE_KEY_AUTO_INSERT then
             local validKeyFound = false
             for bag = 0, 4 do
