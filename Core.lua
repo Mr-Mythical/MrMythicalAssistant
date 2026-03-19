@@ -39,6 +39,7 @@ local lastEventShown = {}
 local moveMode = false
 local lastStartedDungeon
 local repeatCount = 0
+local lastShownTemplate
 
 local function savePosition()
     local point, _, _, x, y = frame:GetPoint()
@@ -65,14 +66,31 @@ end
 
 ---Selects a random message for a given event
 ---@param event string The event key to look up in the messages table
+---@param avoidMessage string|nil Optional message to avoid when alternatives exist
 ---@return string|nil message The selected message string or nil if not found
-local function pickMessage(event)
+local function pickMessage(event, avoidMessage)
     local list = MrMythicalAssistant.messages[event]
     if not list or #list == 0 then
         return nil
     end
-    local index = math.random(#list)
-    return list[index]
+
+    if #list == 1 then
+        return list[1]
+    end
+
+    local filtered = {}
+    for i = 1, #list do
+        if list[i] ~= avoidMessage then
+            filtered[#filtered + 1] = list[i]
+        end
+    end
+
+    if #filtered == 0 then
+        filtered = list
+    end
+
+    local index = math.random(#filtered)
+    return filtered[index]
 end
 
 local function cancelHideTimer()
@@ -110,10 +128,11 @@ local function showMessage(event, force, ...)
         return -- prevent spam from rapid repeats
     end
 
-    local msg = pickMessage(event)
-    if not msg then
+    local msgTemplate = pickMessage(event, lastShownTemplate)
+    if not msgTemplate then
         return
     end
+    local msg = msgTemplate
 
     -- Format message if args provided
     if ... then
@@ -125,6 +144,7 @@ local function showMessage(event, force, ...)
     end
 
     lastEventShown[event] = now
+    lastShownTemplate = msgTemplate
     cancelHideTimer()
 
     text:SetText(msg)
