@@ -26,6 +26,8 @@ avatar:SetTexCoord(0, 1, 0, 1)
 ---@type FontString
 local text = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 text:SetPoint("TOP", avatar, "BOTTOM", 0, -10)
+text:SetWidth(236)
+text:SetWordWrap(true)
 text:SetJustifyH("CENTER")
 text:SetSpacing(2)
 text:SetShadowOffset(1, -1)
