@@ -68,21 +68,50 @@ MrMythicalAssistant.messages = {
         "Well, you made it. That's something.",
         "Congratulations on your victory. Try not to let it go to your head."
     },
-    REPAIR_BILL_SELF = {
-        "Repaired for %s. Expensive hobby, isn't it?",
+    REPAIR_BILL_SELF_LOW = {
+        "Repaired for %s. A minor scratch, nothing more.",
+        "%s? That's pocket change. Try harder!",
+        "Barely a dent in your wallet: %s.",
+        "A frugal repair at %s."
+    },
+    REPAIR_BILL_SELF_MED = {
         "Swirlies are not for standing in. That will be %s.",
         "Your armor is made of paper. %s deducted.",
         "%s? I suppose durability is optional for you.",
-        "You paid %s to fix your mistakes. How very responsible of you.",
-        "The repair bill is %s. I hope it was worth it."
+        "You paid %s to fix your mistakes. How very responsible of you."
     },
-    REPAIR_BILL_GUILD = {
-        "%s repair bill? Your guild master must hate you.",
+    REPAIR_BILL_SELF_HIGH = {
+        "The repair bill is %s. I hope it was worth it.",
+        "%s? That's a lot of standing in fire.",
+        "You could buy a new weapon for %s, but sure, repair it.",
+        "%s spent on repairs. Maybe try dodging next time."
+    },
+    REPAIR_BILL_SELF_ULTRA = {
+        "%s? Did you repair the whole raid?",
+        "A whopping %s! Your wallet cries.",
+        "Legendary repair bill: %s. Impressive...ly bad.",
+        "%s on repairs? That's a new record!"
+    },
+    REPAIR_BILL_GUILD_LOW = {
+        "%s from the guild bank. Hardly worth mentioning.",
+        "A gentle tap on the guild funds: %s.",
+        "%s? The guild won't even notice."
+    },
+    REPAIR_BILL_GUILD_MED = {
         "Draining the guild bank of %s. How very altruistic.",
         "The guild pays %s for your incompetence. Charming.",
-        "%s from the guild funds. Do you enjoy being a liability?",
-        "Your guild paid %s to fix your mistakes. How very generous of them.",
+        "%s from the guild funds. Do you enjoy being a liability?"
+    },
+    REPAIR_BILL_GUILD_HIGH = {
+        "%s repair bill? Your guild master must hate you.",
         "The repair bill is %s. I hope it was worth it for your guildmates.",
+        "Your guild paid %s to fix your mistakes. How very generous of them."
+    },
+    REPAIR_BILL_GUILD_ULTRA = {
+        "%s from the guild? Did you break the bank?",
+        "A legendary %s from guild funds. Ouch.",
+        "%s? The treasurer just fainted.",
+        "%s on repairs? The guild will remember this."
     },
     PLAYER_LEVEL_UP = {
         "Level %s. How thrilling. Do try not to die immediately.",

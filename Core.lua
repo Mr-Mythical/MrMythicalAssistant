@@ -75,24 +75,33 @@ local function pickMessage(event, avoidMessage)
     if not list or #list == 0 then
         return nil
     end
-
     if #list == 1 then
         return list[1]
     end
-
     local filtered = {}
     for i = 1, #list do
         if list[i] ~= avoidMessage then
             filtered[#filtered + 1] = list[i]
         end
     end
-
     if #filtered == 0 then
         filtered = list
     end
-
     local index = math.random(#filtered)
     return filtered[index]
+end
+
+-- Helper to get repair message bracket
+local function getRepairBracket(cost)
+    if cost < 1000000 then -- less than 1g
+        return "LOW"
+    elseif cost < 5000000 then -- 1g to 4g99s
+        return "MED"
+    elseif cost < 7500000 then -- 5g to 7g49s
+        return "HIGH"
+    else -- 7g50s+
+        return "ULTRA"
+    end
 end
 
 local function cancelHideTimer()
@@ -272,7 +281,8 @@ frame:SetScript("OnEvent", function(_, event, ...)
             if lastRepairCost > 0 and currentRepairCost == 0 and moneyDiff > 0 then
                  if math.abs(moneyDiff - lastRepairCost) < 100 then
                      local costString = C_CurrencyInfo.GetCoinTextureString(lastRepairCost)
-                     showMessage("REPAIR_BILL_SELF", true, costString)
+                     local bracket = getRepairBracket(lastRepairCost)
+                     showMessage("REPAIR_BILL_SELF_" .. bracket, true, costString)
                      lastRepairCost = 0
                  end
             end
@@ -350,10 +360,11 @@ hooksecurefunc("RepairAllItems", function(useGuild)
 
     if lastRepairCost > 0 then
         local costString = C_CurrencyInfo.GetCoinTextureString(lastRepairCost)
+        local bracket = getRepairBracket(lastRepairCost)
         if useGuild then
-            showMessage("REPAIR_BILL_GUILD", true, costString)
+            showMessage("REPAIR_BILL_GUILD_" .. bracket, true, costString)
         else
-            showMessage("REPAIR_BILL_SELF", true, costString)
+            showMessage("REPAIR_BILL_SELF_" .. bracket, true, costString)
         end
         lastRepairCost = 0 -- Reset so we don't show it again via auto-detect
     end
