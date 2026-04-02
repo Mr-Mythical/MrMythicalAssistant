@@ -42,6 +42,8 @@ local moveMode = false
 local lastStartedDungeon
 local repeatCount = 0
 local lastShownTemplate
+local cachedKeystoneBag
+local cachedKeystoneSlot
 
 local function savePosition()
     local point, _, _, x, y = frame:GetPoint()
@@ -102,6 +104,66 @@ local function getRepairBracket(cost)
     else -- 7g50s+
         return "ULTRA"
     end
+end
+
+-- Returns true when the keystone socket already contains a key.
+local function hasSlottedKeystone()
+    if not C_ChallengeMode or not C_ChallengeMode.GetSlottedKeystoneInfo then
+        return false
+    end
+
+    local ok, mapID, level = pcall(C_ChallengeMode.GetSlottedKeystoneInfo)
+    if not ok then
+        return false
+    end
+
+    return (type(level) == "number" and level > 0) or (type(mapID) == "number" and mapID > 0)
+end
+
+local function clearKeystoneCache()
+    cachedKeystoneBag = nil
+    cachedKeystoneSlot = nil
+end
+
+local function trySlotCachedKeystone()
+    if cachedKeystoneBag == nil or cachedKeystoneSlot == nil then
+        return false
+    end
+
+    local itemLocation = ItemLocation:CreateFromBagAndSlot(cachedKeystoneBag, cachedKeystoneSlot)
+    if not itemLocation or not C_ChallengeMode.CanUseKeystoneInCurrentMap(itemLocation) then
+        clearKeystoneCache()
+        return false
+    end
+
+    C_Container.PickupContainerItem(cachedKeystoneBag, cachedKeystoneSlot)
+    if CursorHasItem() then
+        C_ChallengeMode.SlotKeystone()
+        return true
+    end
+
+    clearKeystoneCache()
+    return false
+end
+
+local function refreshKeystoneCache()
+    clearKeystoneCache()
+    for bag = 0, 4 do
+        local numSlots = C_Container.GetContainerNumSlots(bag)
+        for slot = 1, numSlots do
+            local link = C_Container.GetContainerItemLink(bag, slot)
+            if link and string.find(link, "Keystone") then
+                local itemLocation = ItemLocation:CreateFromBagAndSlot(bag, slot)
+                if itemLocation and C_ChallengeMode.CanUseKeystoneInCurrentMap(itemLocation) then
+                    cachedKeystoneBag = bag
+                    cachedKeystoneSlot = slot
+                    return true
+                end
+            end
+        end
+    end
+
+    return false
 end
 
 local function cancelHideTimer()
@@ -239,6 +301,7 @@ frame:RegisterEvent("MERCHANT_SHOW")
 frame:RegisterEvent("MERCHANT_CLOSED")
 frame:RegisterEvent("PLAYER_MONEY")
 frame:RegisterEvent("PLAYER_LEVEL_UP")
+frame:RegisterEvent("BAG_UPDATE_DELAYED")
 
 local lastRepairCost = 0
 local playerMoney = 0
@@ -253,7 +316,13 @@ frame:SetScript("OnEvent", function(_, event, ...)
             
             MrMythicalAssistantDB = MrMythicalAssistantDB or {}
             applyPosition()
+            refreshKeystoneCache()
         end
+        return
+    end
+
+    if event == "BAG_UPDATE_DELAYED" then
+        refreshKeystoneCache()
         return
     end
 
@@ -313,25 +382,14 @@ frame:SetScript("OnEvent", function(_, event, ...)
         end
 
     elseif event == "CHALLENGE_MODE_KEYSTONE_RECEPTABLE_OPEN" then
+        if hasSlottedKeystone() then
+            return
+        end
+
         if MrMythicalAssistantDB.ENABLE_KEY_AUTO_INSERT then
-            local validKeyFound = false
-            for bag = 0, 4 do
-                local numSlots = C_Container.GetContainerNumSlots(bag)
-                for slot = 1, numSlots do
-                    local link = C_Container.GetContainerItemLink(bag, slot)
-                    if link and string.find(link, "Keystone") then
-                        local itemLocation = ItemLocation:CreateFromBagAndSlot(bag, slot)
-                        if itemLocation and C_ChallengeMode.CanUseKeystoneInCurrentMap(itemLocation) then
-                            C_Container.PickupContainerItem(bag, slot)
-                            if CursorHasItem() then
-                                 C_ChallengeMode.SlotKeystone()
-                                 validKeyFound = true
-                            end
-                            break 
-                        end
-                    end
-                end
-                if validKeyFound then break end
+            local validKeyFound = trySlotCachedKeystone()
+            if not validKeyFound and refreshKeystoneCache() then
+                validKeyFound = trySlotCachedKeystone()
             end
     
             if not validKeyFound then
@@ -342,6 +400,7 @@ frame:SetScript("OnEvent", function(_, event, ...)
         end
 
     elseif event == "CHALLENGE_MODE_KEYSTONE_SLOTTED" then
+        clearKeystoneCache()
         showMessage("KEY_INSERTED", true)
         
     elseif event == "CHALLENGE_MODE_COMPLETED" then
