@@ -11,7 +11,6 @@ MrMythicalAssistant.messages = {
         "Fascinating decision-making, really.",
         "One does not simply ignore swirlies.",
         "Shall we pretend that pull didn't happen?",
-        "Gravity is a harsh mistress, isn't it?",
         "A tactical reset, I presume?",
         "Brilliant performance. Truly.",
         "Obviously that was the healers fault, right?",
