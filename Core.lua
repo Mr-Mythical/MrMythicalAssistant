@@ -44,6 +44,7 @@ local repeatCount = 0
 local lastShownTemplate
 local cachedKeystoneBag
 local cachedKeystoneSlot
+local afkStartTime
 
 local function savePosition()
     local point, _, _, x, y = frame:GetPoint()
@@ -164,6 +165,25 @@ local function refreshKeystoneCache()
     end
 
     return false
+end
+
+--- Formats a duration in seconds into a human-readable string
+---@param seconds number
+---@return string
+local function formatDuration(seconds)
+    if seconds < 60 then
+        return string.format("%d seconds", seconds)
+    elseif seconds < 3600 then
+        local mins = math.floor(seconds / 60)
+        return string.format("%d minute%s", mins, mins > 1 and "s" or "")
+    else
+        local hours = math.floor(seconds / 3600)
+        local mins = math.floor((seconds % 3600) / 60)
+        if mins > 0 then
+            return string.format("%dh %dm", hours, mins)
+        end
+        return string.format("%d hour%s", hours, hours > 1 and "s" or "")
+    end
 end
 
 local function cancelHideTimer()
@@ -301,6 +321,7 @@ frame:RegisterEvent("MERCHANT_SHOW")
 frame:RegisterEvent("MERCHANT_CLOSED")
 frame:RegisterEvent("PLAYER_MONEY")
 frame:RegisterEvent("PLAYER_LEVEL_UP")
+frame:RegisterEvent("PLAYER_FLAGS_CHANGED")
 frame:RegisterEvent("BAG_UPDATE_DELAYED")
 
 local lastRepairCost = 0
@@ -412,6 +433,25 @@ frame:SetScript("OnEvent", function(_, event, ...)
             level = tonumber(level) or UnitLevel("player")
         end
         showMessage("PLAYER_LEVEL_UP", false, level)
+
+    elseif event == "PLAYER_FLAGS_CHANGED" then
+        local unit = ...
+        if unit ~= "player" then return end
+        if not MrMythicalAssistantDB.ENABLE_AFK_MESSAGES then return end
+
+        if UnitIsAFK("player") then
+            afkStartTime = GetTime()
+            showMessage("PLAYER_AFK", true)
+        elseif afkStartTime then
+            local elapsed = GetTime() - afkStartTime
+            local duration = formatDuration(elapsed)
+            afkStartTime = nil
+            if elapsed < 300 then
+                showMessage("PLAYER_AFK_RETURN_SHORT", true, duration)
+            else
+                showMessage("PLAYER_AFK_RETURN_LONG", true, duration)
+            end
+        end
     end
 end)
 

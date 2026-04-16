@@ -112,6 +112,27 @@ MrMythicalAssistant.messages = {
         "%s The treasurer just fainted",
         "%s on repairs The guild will remember this"
     },
+    PLAYER_AFK = {
+        "Going AFK? How very unlike you to stop standing in things.",
+        "AFK already? We just got here.",
+        "Off you go then. I'll hold down the fort... reluctantly.",
+        "AFK. Finally, some peace and quiet.",
+        "Stepping away? Don't worry, I won't miss you.",
+        "And there he goes. Probably to stare at his fridge."
+    },
+    PLAYER_AFK_RETURN_SHORT = {
+        "Back so soon? That was only %s.",
+        "A mere %s break. How restrained.",
+        "%s away. Barely enough time to polish my monocle.",
+        "That was %s. I hardly noticed you were gone."
+    },
+    PLAYER_AFK_RETURN_LONG = {
+        "%s? I was beginning to think you'd quit.",
+        "Ah, you've returned after %s. How generous of you.",
+        "%s away. I was about to redecorate.",
+        "Welcome back. Only %s wasted. Impressive... ly bad.",
+        "%s of absence. Did you forget you were playing?"
+    },
     PLAYER_LEVEL_UP = {
         "Level %s. How thrilling. Do try not to die immediately.",
         "Congratulations on level %s. I expect you'll still stand in fire.",

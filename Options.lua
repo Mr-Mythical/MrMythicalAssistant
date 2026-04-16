@@ -17,12 +17,14 @@ local DEFAULTS = {
     ENABLE_CHAT_MESSAGES = true,
     ENABLE_REPAIR_TRACKING = true,
     ENABLE_KEY_AUTO_INSERT = true,
+    ENABLE_AFK_MESSAGES = true,
     VERBOSE_MODE = false,
     MESSAGE_DURATION = 5
 }
 
 local TOOLTIPS = {
     ENABLE_KEY_AUTO_INSERT = "Allow Mr. Mythical to automatically attempt to insert your keystone when you open the receptacle.",
+    ENABLE_AFK_MESSAGES = "Mr. Mythical will comment when you go AFK and when you return.",
     MESSAGE_DURATION = "How long the message stays on screen."
 }
 
@@ -179,6 +181,17 @@ function Options.createSettingsInCategory(category)
                     key = "ENABLE_KEY_AUTO_INSERT",
                     type = "boolean",
                     tooltip = TOOLTIPS.ENABLE_KEY_AUTO_INSERT
+                }
+            }
+        },
+        {
+            header = { name = "Commentary Features", tooltip = "Configure event commentary" },
+            settings = {
+                {
+                    name = "AFK Messages",
+                    key = "ENABLE_AFK_MESSAGES",
+                    type = "boolean",
+                    tooltip = TOOLTIPS.ENABLE_AFK_MESSAGES
                 }
             }
         }
