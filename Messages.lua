@@ -6,6 +6,14 @@ _G[addonName] = MrMythicalAssistant
 --- Table containing all available messages for different events
 ---@type table<string, string[]>
 MrMythicalAssistant.messages = {
+    LOGIN_GREETING = {
+        "Ah, you're back. How unfortunate... for me.",
+        "Welcome back. Try not to embarrass us both.",
+        "Oh good, you've returned. It was so peaceful.",
+        "Another day, another series of questionable decisions.",
+        "Oh good its you again.",
+        "Greetings. I've lowered my expectations accordingly."
+    },
     PLAYER_DEAD = {
         "Ah. Yes. That mechanic.",
         "Fascinating decision-making, really.",

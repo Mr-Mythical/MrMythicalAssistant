@@ -338,6 +338,9 @@ frame:SetScript("OnEvent", function(_, event, ...)
             MrMythicalAssistantDB = MrMythicalAssistantDB or {}
             applyPosition()
             refreshKeystoneCache()
+            C_Timer.After(2, function()
+                showMessage("LOGIN_GREETING", true)
+            end)
         end
         return
     end
