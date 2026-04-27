@@ -82,21 +82,21 @@ MrMythicalAssistant.messages = {
         "A frugal repair at %s"
     },
     REPAIR_BILL_SELF_MED = {
-        "Swirlies are not for standing in. That will be %s",
-        "Your armor is made of paper. %s deducted",
-        "%s I suppose durability is optional for you",
-        "You paid %s to fix your mistakes. How very responsible of you"
+        "Swirlies are not for standing in. That will be %s.",
+        "Your armor is made of paper. %s deducted.",
+        "%s I suppose durability is optional for you.",
+        "You paid %s to fix your mistakes. How very responsible of you."
     },
     REPAIR_BILL_SELF_HIGH = {
-        "The repair bill is %s I hope it was worth it",
-        "%s That's a lot of standing in fire",
-        "You could buy a new weapon for %s, but sure, repair it",
-        "%s spent on repairs. Maybe try dodging next time"
+        "The repair bill is %s I hope it was worth it.",
+        "%s That's a lot of standing in fire.",
+        "You could buy a new weapon for %s, but sure, repair it.",
+        "%s spent on repairs. Maybe try dodging next time."
     },
     REPAIR_BILL_SELF_ULTRA = {
         "%s Did you repair the whole raid?",
-        "A whopping %s Your wallet cries",
-        "Legendary repair bill: %s Impressive...ly bad",
+        "A whopping %s Your wallet cries.",
+        "Legendary repair bill: %s Impressive...ly bad.",
         "%s on repairs That's a new record!"
     },
     REPAIR_BILL_GUILD_LOW = {
