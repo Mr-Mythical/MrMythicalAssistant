@@ -97,17 +97,17 @@ MrMythicalAssistant.messages = {
         "%s Did you repair the whole raid?",
         "A whopping %s Your wallet cries.",
         "Legendary repair bill: %s Impressive...ly bad.",
-        "%s on repairs That's a new record!"
+        "%s on repairs. That's a new record!"
     },
     REPAIR_BILL_GUILD_LOW = {
-        "%s from the guild bank Hardly worth mentioning",
+        "%s from the guild bank. Hardly worth mentioning",
         "A gentle tap on the guild funds: %s",
         "%s The guild won't even notice"
     },
     REPAIR_BILL_GUILD_MED = {
         "Draining the guild bank of %s How very altruistic",
         "The guild pays %s for your incompetence. Charming",
-        "%s from the guild funds Do you enjoy being a liability?"
+        "%s from the guild funds. Do you enjoy being a liability?"
     },
     REPAIR_BILL_GUILD_HIGH = {
         "%s repair bill Your guild master must hate you",
@@ -115,10 +115,10 @@ MrMythicalAssistant.messages = {
         "Your guild paid %s to fix your mistakes. How very generous of them"
     },
     REPAIR_BILL_GUILD_ULTRA = {
-        "%s from the guild Did you break the bank?",
-        "A legendary %s from guild funds Ouch",
+        "%s from the guild. Did you break the bank?",
+        "A legendary %s from guild funds. Ouch",
         "%s The treasurer just fainted",
-        "%s on repairs The guild will remember this"
+        "%s on repairs. The guild will remember this"
     },
     PLAYER_AFK = {
         "Going AFK? How very unlike you to stop standing in things.",
