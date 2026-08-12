@@ -8,7 +8,7 @@ local FADE_OUT_DURATION = 0.35
 local MIN_REPEAT_SECONDS = 3
 
 ---@type Frame
-local frame = CreateFrame("Frame", addonName .. "Frame", UIParent, BackdropTemplateMixin and "BackdropTemplate")
+local frame = CreateFrame("Frame", addonName .. "Frame", UIParent)
 frame:SetSize(260, 170)
 frame:SetPoint(DEFAULT_POSITION.anchor, UIParent, DEFAULT_POSITION.anchor, DEFAULT_POSITION.x, DEFAULT_POSITION.y)
 frame:SetClampedToScreen(true)
@@ -20,8 +20,15 @@ frame:Hide()
 local avatar = frame:CreateTexture(nil, "ARTWORK")
 avatar:SetSize(96, 96)
 avatar:SetPoint("TOPLEFT", frame, "TOPLEFT", 12, -12)
-avatar:SetTexture("Interface/AddOns/MrMythicalAssistant/Logo.png")
+avatar:SetTexture("Interface\\AddOns\\MrMythicalAssistant\\Logo.png")
 avatar:SetTexCoord(0, 1, 0, 1)
+avatar:SetBlendMode("BLEND")
+if avatar.SetSnapToPixelGrid then
+    avatar:SetSnapToPixelGrid(true)
+end
+if avatar.SetTexelSnappingBias then
+    avatar:SetTexelSnappingBias(0)
+end
 
 ---@type FontString
 local text = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
